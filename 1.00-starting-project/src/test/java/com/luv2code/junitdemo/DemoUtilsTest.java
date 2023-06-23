@@ -3,6 +3,7 @@ package com.luv2code.junitdemo;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayNameGeneration(DisplayNameGenerator.Standard.class)
 class DemoUtilsTest {
 
     DemoUtils demoUtils;
