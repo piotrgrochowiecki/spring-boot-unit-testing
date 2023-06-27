@@ -66,4 +66,12 @@ class DemoUtilsTest {
         assertLinesMatch(expectedList, demoUtils.getAcademyInList());
     }
 
+    @Test
+    @DisplayName("Throws and does not throw an exception")
+    public void testThrowsAndDoesNotThrow() {
+        assertThrows(Exception.class, () -> demoUtils.throwException(-4));
+
+        assertDoesNotThrow(() -> demoUtils.throwException(2));
+    }
+
 }
