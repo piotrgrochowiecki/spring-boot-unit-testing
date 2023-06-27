@@ -1,9 +1,12 @@
 package com.luv2code.junitdemo;
 
 import org.junit.jupiter.api.*;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayNameGeneration(DisplayNameGenerator.Standard.class)
+@DisplayNameGeneration(DisplayNameGenerator.IndicativeSentences.class)
 class DemoUtilsTest {
 
     DemoUtils demoUtils;
@@ -36,6 +39,31 @@ class DemoUtilsTest {
 
         assertNull(str1);
         assertNotNull(str2);
+    }
+
+    @Test
+    @DisplayName("Array equals test")
+    void testArrayEquals() {
+        String[] arrAtr = {"A", "B", "C "};
+
+        assertArrayEquals(arrAtr, demoUtils.getFirstThreeLettersOfAlphabet(), "Arrays must be equal");
+
+    }
+
+    @Test
+    @DisplayName("List equals test")
+    void testListEquals() {
+        List<String> expectedList = List.of("luv", "2", "code");
+
+        assertIterableEquals(expectedList, demoUtils.getAcademyInList(), "Lists must be equal");
+    }
+
+    @Test
+    @DisplayName("Lines match")
+    void testLinesMatch() {
+        List<String> expectedList = List.of("luv", "2", "code");
+
+        assertLinesMatch(expectedList, demoUtils.getAcademyInList());
     }
 
 }
