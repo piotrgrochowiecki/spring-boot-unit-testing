@@ -45,7 +45,7 @@ class DemoUtilsTest {
     @Test
     @DisplayName("Array equals test")
     void testArrayEquals() {
-        String[] arrAtr = {"A", "B", "C "};
+        String[] arrAtr = {"A", "B", "C"};
 
         assertArrayEquals(arrAtr, demoUtils.getFirstThreeLettersOfAlphabet(), "Arrays must be equal");
 
@@ -79,6 +79,12 @@ class DemoUtilsTest {
     @DisplayName("Timeout test")
     public void testTimeout() {
         assertTimeoutPreemptively(Duration.ofSeconds(3L), () -> demoUtils.checkTimeout());
+    }
+
+    @Test
+    @DisplayName("Test multiply")
+    public void testMultiply() {
+        assertEquals(12, demoUtils.multiply(2, 6));
     }
 
 }
