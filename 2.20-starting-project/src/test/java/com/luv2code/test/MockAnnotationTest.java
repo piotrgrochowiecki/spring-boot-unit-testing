@@ -51,6 +51,8 @@ public class MockAnnotationTest {
 
         assertEquals(100, applicationService.addGradeResultsForSingleClass(studentOne.getStudentGrades()
                                                                                    .getMathGradeResults()));
+
+        verify(applicationDao, times(1)).addGradeResultsForSingleClass(studentGrades.getMathGradeResults());
     }
 
 }
