@@ -5,6 +5,7 @@ import com.luv2code.component.dao.ApplicationDao;
 import com.luv2code.component.models.CollegeStudent;
 import com.luv2code.component.models.StudentGrades;
 import com.luv2code.component.service.ApplicationService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,10 +31,12 @@ public class MockAnnotationTest {
     @Autowired
     StudentGrades studentGrades;
 
-    @Mock
+    //@Mock
+    @MockBean //this annotation comes from spring. It mocks the object and also injects it into application context
     private ApplicationDao applicationDao;
 
-    @InjectMocks
+    //@InjectMocks
+    @Autowired //it is recommended to use autowired, because dependencies are in app context thanks to @MockBean
     private ApplicationService applicationService;
 
     @BeforeEach
@@ -53,6 +56,28 @@ public class MockAnnotationTest {
                                                                                    .getMathGradeResults()));
 
         verify(applicationDao, times(1)).addGradeResultsForSingleClass(studentGrades.getMathGradeResults());
+    }
+
+    @DisplayName("Find gpa")
+    @Test
+    public void assertEqualsTestFindGpa(){
+        when(applicationDao.findGradePointAverage(studentGrades.getMathGradeResults())).thenReturn(88.31);
+
+        assertEquals(88.31, applicationService.findGradePointAverage(studentOne.getStudentGrades()
+                                                                             .getMathGradeResults()));
+
+    }
+
+    @DisplayName("Not null")
+    @Test
+    public void assertNotNull() {
+        when(applicationDao.checkNull(studentGrades.getMathGradeResults())).thenReturn(true);
+
+        Assertions.assertNotNull(applicationService.checkNull(studentOne.getStudentGrades().getMathGradeResults()),
+                                 "Object should not be null");
+
+
+
     }
 
 }
