@@ -20,8 +20,8 @@ public class GradebookController {
 
 
 	@GetMapping("/studentInformation/{id}")
-		public String studentInformation(@PathVariable int id, Model m) {
+	public String studentInformation(@PathVariable int id, Model m) {
 		return "studentInformation";
-		}
+	}
 
 }
