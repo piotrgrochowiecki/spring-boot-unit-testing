@@ -34,4 +34,8 @@ public class StudentAndGradeService {
         studentToBeDeleted.ifPresent(collegeStudent -> studentDao.delete(collegeStudent));
     }
 
+    public Iterable<CollegeStudent> getGradebook() {
+        return studentDao.findAll();
+    }
+
 }

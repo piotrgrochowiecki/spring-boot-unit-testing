@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,4 +71,15 @@ public class StudentAndGradeServiceTest {
         assertFalse(deletedCollegeStudent.isPresent());
     }
 
+
+    @Test
+    public void getGradeBookService() {
+        Iterable<CollegeStudent> collegeStudentIterable = studentService.getGradebook();
+
+        List<CollegeStudent> collegeStudentsList = new ArrayList<>();
+
+        collegeStudentIterable.forEach(collegeStudent -> collegeStudentsList.add(collegeStudent));
+
+        assertEquals(1, collegeStudentsList.size());
+    }
 }
